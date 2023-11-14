@@ -19,7 +19,11 @@ export class userRepositoryImpl implements userRepository {
             }
         })
     }
-    findByEmail(email: string): void {
-        throw new Error("Method not implemented.");
+
+    findByEmail(email: string): Promise<any> {
+        return this.prisma.user.findUnique({
+            where: { email },
+        })
     }
+
 }
