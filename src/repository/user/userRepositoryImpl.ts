@@ -1,11 +1,23 @@
 import { CreateUserDto } from "src/user/dto/create-user.dto";
 import userRepository from "./userRepository";
-import { PrismaClient } from "@prisma/client";
+import { PrismaService } from "src/prisma.service";
+import { Injectable } from "@nestjs/common";
 
+@Injectable()
 export class userRepositoryImpl implements userRepository {
 
-    constructor(repositoy : PrismaClient){}
-    create(user: CreateUserDto): void {
+    constructor(private prisma: PrismaService) { }
+
+    create(user: CreateUserDto) {
+        return this.prisma.user.create({
+            data: {
+                email: user.email,
+                cpf: user.cpf,
+                name: user.name,
+                phone: user.phone,
+                password: user.password
+            }
+        })
     }
     findByEmail(email: string): void {
         throw new Error("Method not implemented.");
