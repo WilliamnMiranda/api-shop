@@ -19,7 +19,7 @@ export class userRepositoryImpl implements userRepository {
             }
         })
     }
-
+    
     findByEmail(email: string): Promise<any> {
         return this.prisma.user.findUnique({
             where: { email },
