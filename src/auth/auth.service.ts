@@ -16,10 +16,11 @@ export class AuthService {
             }
 
             const isPasswordValid = await bcrypt.compare(userAuth.password, user.password);
+            console.log(user)
             if (isPasswordValid) {
-                const { email, name, id, phone, cpf } = user;
+                const { email, name, id, phone, cpf, Cart } = user;
                 const token = await this.jwtService.signAsync({ email, id });
-                return { email, name, id, phone, cpf, token };
+                return { email, name, id, phone, cpf, token, Cart };
             } else {
                 throw new UnauthorizedException('Credenciais inválidas');
             }

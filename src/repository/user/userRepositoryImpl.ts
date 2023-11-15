@@ -15,14 +15,25 @@ export class userRepositoryImpl implements userRepository {
                 cpf: user.cpf,
                 name: user.name,
                 phone: user.phone,
-                password: user.password
+                password: user.password,
+                Cart: {
+                    create: {
+                        products: {}
+                    }
+                }
+            },
+            include: {
+                Cart: true
             }
         })
     }
-    
+
     findByEmail(email: string): Promise<any> {
         return this.prisma.user.findUnique({
             where: { email },
+            include: {
+                Cart: { include: { products: true } }
+            }
         })
     }
 

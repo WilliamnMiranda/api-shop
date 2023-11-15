@@ -24,4 +24,24 @@ model User {
   password String
   phone    String
   address  Address?
+  Cart     Cart?
+}
+
+model Cart {
+  id       String    @id @default(uuid())
+  userId   String    @unique
+  user     User      @relation(fields: [userId], references: [id])
+  products Product[]
+}
+
+model Product {
+  id             String  @id @default(uuid())
+  price          String
+  name           String
+  Cart           Cart?   @relation(fields: [cartId], references: [id])
+  cartId         String?
+  discount       Boolean
+  value_discount Int
+  brand          String
+  rating         Int
 }
