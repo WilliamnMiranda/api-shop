@@ -12,7 +12,8 @@ export class cartRepositoryImpl implements cartRepository {
     getAll(id: string) {
         return this.prisma.cart.findUnique({
             where: { userId: id },
-            include: { products: true }
+            include: { products: true 
+            }
         })
     }
     add(updateCartDto: UpdateCartDto) {
