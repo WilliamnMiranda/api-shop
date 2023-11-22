@@ -9,7 +9,12 @@ import { UpdateCartDto } from "src/cart/dto/update-cart.dto";
 export class cartRepositoryImpl implements cartRepository {
 
     constructor(private prisma: PrismaService) { }
-
+    getAll(id: string) {
+        return this.prisma.cart.findUnique({
+            where: { userId: id },
+            include: { products: true }
+        })
+    }
     add(updateCartDto: UpdateCartDto) {
         return this.prisma.cart.update({
             where: { id: updateCartDto.cartId },
