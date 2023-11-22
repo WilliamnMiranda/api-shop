@@ -11,7 +11,7 @@ export class CartService {
     return this.repository.add(createCartDto)
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} cart`;
+  remove(productId: string) {
+    return this.repository.remove(productId)
   }
 }

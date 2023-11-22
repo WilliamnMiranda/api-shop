@@ -21,39 +21,16 @@ export class cartRepositoryImpl implements cartRepository {
                         discount: updateCartDto.product.discount,
                         value_discount: updateCartDto.product.value_discount,
                         amount: updateCartDto.product.amount,
+                        id: updateCartDto.product.id
                     },
                 },
             },
         });
     }
 
-    create(user: CreateUserDto) {
-        return this.prisma.user.create({
-            data: {
-                email: user.email,
-                cpf: user.cpf,
-                name: user.name,
-                phone: user.phone,
-                password: user.password,
-                Cart: {
-                    create: {
-                        products: {}
-                    }
-                }
-            },
-            include: {
-                Cart: true
-            }
-        })
+    remove(id: string) {
+        return this.prisma.productCart.delete({
+            where: { id: id }
+        });
     }
-
-    findByEmail(email: string): Promise<any> {
-        return this.prisma.user.findUnique({
-            where: { email },
-            include: {
-                Cart: { include: { products: true } }
-            }
-        })
-    }
-
 }

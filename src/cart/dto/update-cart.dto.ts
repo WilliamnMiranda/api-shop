@@ -7,6 +7,7 @@ interface productCart {
     discount: boolean,
     value_discount: number,
     amount: number,
+    id: string,
 }
 export class UpdateCartDto extends PartialType(CreateCartDto) {
     readonly cartId: string;
