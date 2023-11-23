@@ -12,7 +12,8 @@ export class cartRepositoryImpl implements cartRepository {
     getAll(id: string) {
         return this.prisma.cart.findUnique({
             where: { userId: id },
-            include: { products: true 
+            include: {
+                products: true
             }
         })
     }
@@ -32,6 +33,12 @@ export class cartRepositoryImpl implements cartRepository {
                 },
             },
         });
+    }
+    update(id: string, quantity: number) {
+        return this.prisma.productCart.update({
+            where: { id },
+            data: { amount: quantity },
+        })
     }
 
     remove(id: string) {

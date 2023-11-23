@@ -8,7 +8,7 @@ export class CartService {
 
   constructor(private repository: cartRepositoryImpl) { }
 
-  getAll(id: string){
+  getAll(id: string) {
     return this.repository.getAll(id)
   }
 
@@ -18,5 +18,9 @@ export class CartService {
 
   remove(productId: string) {
     return this.repository.remove(productId)
+  }
+
+  update(id: string, quantity: number) {
+    return this.repository.update(id, quantity)
   }
 }

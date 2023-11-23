@@ -9,7 +9,15 @@ interface productCart {
     amount: number,
     id: string,
 }
+
+interface IUpdateAmountProductCart {
+    amount: number
+}
 export class UpdateCartDto extends PartialType(CreateCartDto) {
     readonly cartId: string;
     readonly product: productCart;
+}
+
+export class UpdateAmountProductCart {
+    readonly amount: number
 }
